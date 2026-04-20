@@ -8,6 +8,13 @@ import time
 from pathlib import Path
 from tabulate import tabulate
 from rich import print
+from rich.markdown import Markdown
+from rich.console import Console
+
+
+
+
+console =  Console()
 
 def main():
     
@@ -19,10 +26,12 @@ def main():
 
     if args.command == 'study':
         print("")
-        heading = "Study Session"
+        
+        heading = """# Study Session"""
+        mark_down = Markdown(heading)
         line = "_"
    
-        print(heading.center(105))
+        console.print(mark_down)
       
         print(f"Pomodoro: {args.minutes} minutes") 
         print(f"Total Session: {args.hour} hour(s)")
@@ -71,8 +80,11 @@ def notes_table():
     """This function displays all of my study sessions."""
     
     print("")
-    heading = "Study Log"
-    print(f"{heading.center(120)}")
+    heading = """# Study Log """
+
+
+    md = Markdown(heading)
+    console.print(md)
 
     notes_folder = Path('/Users/amahlecele/Desktop/kaipom/notes').iterdir()
     for file in notes_folder:

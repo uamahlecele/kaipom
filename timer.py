@@ -3,6 +3,14 @@ from datetime import datetime
 import sys
 from tqdm import trange # tqdm stands for progress in arabic
 from rich.progress import Progress, track
+from rich import print
+from rich.markdown import Markdown
+from rich.console import Console
+
+console = Console()
+
+
+
 
 
 
@@ -14,7 +22,7 @@ def countdown_timer(t_seconds, t_session) -> str:
     if t_seconds == 25:
         study_break = 5*60
     else:
-        study_break = 1*60
+        study_break = 10*60
 
 
     t_session = (t_session*60) #Total study duration
@@ -36,30 +44,19 @@ def countdown_timer(t_seconds, t_session) -> str:
     #     t_session -= 1
 
     while t_minutes:
-        for i in track(range(t_minutes,0,-1), description= "25/5 Pomodoro in progress"):
+        # for i in track(range(t_minutes,0,-1), description= f"Pomodoro in progress"):
 
-            # mins, secs = divmod(t_minutes, 60) # divmod returns quotient and remainder of the division of the first argument with the second. Returns a tuple.
-            # timer = '{:02d}:{:02d}'.format(mins, secs) 
+            mins, secs = divmod(t_minutes, 60) # divmod returns quotient and remainder of the division of the first argument with the second. Returns a tuple.
+            timer = '{:02d}:{:02d}'.format(mins, secs) 
             
-            # print("Time Left:", timer, end='\r')  # Overwrite the line each second by putting cursor back to the beginning of the line.
-            t_minutes-=1
+            print("Time Left:", timer, end='\r')  # Overwrite the line each second by putting cursor back to the beginning of the line.
+       
             time.sleep(1) 
 
-            # with Progress() as p:
-            #     t= p.add_task("Pomodoro 25/5", total = 0)
-            #     while not p.finished:
-            #         p.update(t, advance = 1)
+            t_minutes-=1
 
-            #         time.sleep(0.05)
+    console.print("End of session. ")
 
-
-            
-
-            
-    
-    print("End of session. ")
-
-    
     
     notes = input("What have you learnt so far? ")  # I want to store these notes in a json/ csv file. 
 
