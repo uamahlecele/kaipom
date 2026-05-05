@@ -1,9 +1,6 @@
 """Lena iMain file yam' essentially and is where everything will run."""
 
-# from cli import parsing_ama_argument
-# from timer import countdown_timer
 from rich.progress import Progress, track
-
 from datetime import datetime
 import json
 import time
@@ -56,8 +53,6 @@ def main():
 
             """Main Clock Loop"""
             
-            # big_clock = overall_study_duration_count_down(args.hour)
-
             notes = countdown_timer(args.minutes, args.hour)
             
             session = {"date": str(namhlanje), "study_duration": f"{args.minutes} minute", "start_time": start_time, "notes": notes}
@@ -136,15 +131,12 @@ def countdown_timer(t_seconds, t_session) -> str:
 
     """Count down Pomodoro section of my code"""
 
-    session_counter = 0
-
     start = time.monotonic() # My reference point when the timer start to keep track of total passed seconds
     print("Time left: ") 
     if t_seconds == 25:
         study_break = 5*60
-        # session_counter = 2
     else:
-        study_break = 1*60
+        study_break = 10*60
 
     try: 
         t_session = (t_session*60*60) #Total study duration
@@ -153,13 +145,10 @@ def countdown_timer(t_seconds, t_session) -> str:
     except ValueError:
         print("Only integers are allowed!")
     
-    # while t_session >= 0:
 
+    with Progress(BarColumn(), TimeRemainingColumn()) as progress: # With will close the progress bar once I'm done with it automatically
 
-
-    with Progress(BarColumn(),TimeRemainingColumn()) as progress: # With will close the progress bar once I'm done with it automatically
-
-        study_session = progress.add_task( total=t_minutes,description="Pomodoro in session",)
+        study_session = progress.add_task( total= t_minutes,description= "Pomodoro in session",)
         
         while True:
             elapsed = time.monotonic() - start # How many seconds has it been?
@@ -168,47 +157,36 @@ def countdown_timer(t_seconds, t_session) -> str:
                 break
             
             progress.update(study_session, completed=elapsed)
-            t_session -= elapsed
+            # t_session -= elapsed
             time.sleep(0.1)      
             
-    print("TIME LEFT: ", t_session)
 
-    console.print("End of session. ")
+    console.print("End of session. ") 
     print("")
     
     notes = input("What have you learnt so far? ")  # I want to store these notes in a json/ csv file. 
 
     print("")
 
-    start_break= time.monotonic()
-    print("Break (Phumula): ") 
+    start_break = time.monotonic()
+    print("Break:") 
 
     with Progress(BarColumn(),TimeRemainingColumn()) as progress_break: # With will close the progress bar once I'm done with it automatically
 
-        break_session = progress_break.add_task(description="Break in progress", total=study_break)
+        break_session = progress_break.add_task(description= "Break in progress", total=study_break)
         
         while True:
             elapsed = time.monotonic() - start_break # How many seconds has it been?
-            if elapsed >= t_minutes:
-                progress_break.update( break_session, completed=t_minutes) 
+            if elapsed >= study_break:
+                progress_break.update( break_session, completed = study_break) 
                 break
             
             progress_break.update(break_session, completed=elapsed)
+            # study_break -= elapsed
             time.sleep(0.1)      
+    
+    console.print("Goodbye!")
 
-
-    # STUDY BREAK 
-
-        
-        break_mins, break_secs = divmod(study_break, 60) # divmod returns quotient and remainder of the division of the first argument with the second. Returns a tuple.
-        timer = '{:02d}:{:02d}'.format(break_mins, break_secs) 
-        
-        print("Break (Phumula): ", timer, end='\r')  # Overwrite the line each second by putting cursor back to the beginning of the line.
-        
-        # time.sleep(1) 
-
-        # study_break -= 1
-        
     return notes 
 
 def parsing_ama_argument(args = None):
@@ -229,7 +207,7 @@ def parsing_ama_argument(args = None):
 
     parser_notes.add_argument('--notes', type = str, help = 'See your notes from a specific date or look at them holistically to see what you\'ve learnt.')
 
-      # creates them all for us and stores it into the args variable
+    # creates them all for us and stores it into the args variable
 
     # QUIZ using RAG
 
@@ -242,17 +220,6 @@ def parsing_ama_argument(args = None):
     return parser.parse_args(args)
 
 
-# """Should I use OOP for this? I think so."""
-
-# """I need to figure out a way to trigger a seperate Hour long study session in Hours, similar to the mini timer."""
-
-# """Code to store my notes in a csv or json file. And code to load it up into my terminal."""
-
-
-
-
-
-    
 
 if __name__ == "__main__":
     main()

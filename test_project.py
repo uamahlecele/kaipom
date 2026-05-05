@@ -1,8 +1,6 @@
 """Lana ng'zofaka amaTest ami."""
-from project import countdown_timer, parsing_ama_argument
-# import argparse
 
-# from timer import countdown_timer
+from project import countdown_timer, parsing_ama_argument
 
 import pytest
 
