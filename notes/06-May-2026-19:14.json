@@ -1,0 +1,6 @@
+{
+    "date": "06-May-2026",
+    "study_duration": "25 minute",
+    "start_time": "19:14",
+    "notes": "I've been refactoring the code for Robot worlds. I realise that we will need to define default values for things like ammo, shield strength etc. at the beginning of the game. I think the world will decide on thhese values."
+}

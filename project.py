@@ -35,7 +35,9 @@ def main():
         console.print(mark_down)
 
         print("")
+
         console.print(current_date)
+
         print("")
         print(f"Pomodoro: {args.minutes} minutes") 
         # print(f"Total Session: {args.hour} hour(s)")
@@ -51,26 +53,28 @@ def main():
 
         while True:
 
-            """Main Clock Loop"""
+            """Main Pomodoro Study Loop"""
             
             notes = countdown_timer(args.minutes, args.hour)
             
-            session = {"date": str(namhlanje), "study_duration": f"{args.minutes} minute", "start_time": start_time, "notes": notes}
+            study_session_dict = {"date": str(namhlanje), "study_duration": f"{args.minutes} minutes", "start_time": start_time, "notes": notes}
             uniq_json = f"{namhlanje}"
 
             with open(f"/Users/amahlecele/Desktop/kaipom/notes/{uniq_json}-{start_time}.json", "w") as file: # Storing the files in the notes folder
-                json.dump(session, file)
+                json.dump(study_session_dict, file)
 
                 break
         
-        return f"Session over :)"
+        return f"The pomodoro session is over :)"
     
     elif args.command == "notes":
         notes_table()
 
 
 def date_formatter():
-    "Formats todays date and time into a prettier, more legible format."
+
+    """Formats todays date and time into
+    a prettier, more legible format."""
 
     namhlanje = datetime.today()
     
@@ -84,8 +88,8 @@ def notes_table():
     print("")
     heading = """# Study Log """
 
-    md = Markdown(heading)
-    console.print(md)
+    md_format = Markdown(heading)
+    console.print(md_format)
 
     notes_folder = Path('/Users/amahlecele/Desktop/kaipom/notes').iterdir()
 
@@ -127,33 +131,33 @@ def notes_table():
         print("")
 
 
-def countdown_timer(t_seconds, t_session) -> str:
+def countdown_timer(pomodoro_minutes, total_study_session_hours) -> str:
 
     """Count down Pomodoro section of my code"""
 
     start = time.monotonic() # My reference point when the timer start to keep track of total passed seconds
     print("Time left: ") 
-    if t_seconds == 25:
+    if pomodoro_minutes == 25:
         study_break = 5*60
     else:
         study_break = 10*60
 
     try: 
-        t_session = (t_session*60*60) #Total study duration
+        total_study_session_hours = (total_study_session_hours*60*60) #Total study duration
 
-        t_minutes = (t_seconds * 60) # Convert the minutes I'll receive into seconds
+        pomodoro_minutes_in_seconds = (pomodoro_minutes * 60) # Convert the minutes I'll receive into seconds
     except ValueError:
         print("Only integers are allowed!")
     
 
     with Progress(BarColumn(), TimeRemainingColumn()) as progress: # With will close the progress bar once I'm done with it automatically
 
-        study_session = progress.add_task( total= t_minutes,description= "Pomodoro in session",)
+        study_session = progress.add_task( total= pomodoro_minutes_in_seconds,description= "Pomodoro in session",)
         
         while True:
             elapsed = time.monotonic() - start # How many seconds has it been?
-            if elapsed >= t_minutes:
-                progress.update(study_session, completed=t_minutes) 
+            if elapsed >= pomodoro_minutes_in_seconds:
+                progress.update(study_session, completed=pomodoro_minutes_in_seconds) 
                 break
             
             progress.update(study_session, completed=elapsed)

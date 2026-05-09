@@ -1,0 +1,6 @@
+{
+    "date": "07-May-2026",
+    "study_duration": "50 minute",
+    "start_time": "07:45",
+    "notes": "Right now I found out about a Java package called Time.Unit. It is part of the concurrent class, meaning that it allows for multiple robots to access the resource at the same time. They are thread safe. So the repair method has this functionality now, I need to apply it to the Reload method aswell. I also set up a poll for the GradHack meeting aswell. I also read Good-Enough Software from Pragmattic. It made me realise what Tshepiso was pushing me to do which is give him the code so he could live with it. He'll be able to give me feedback! That's so dope. Yezzir!"
+}

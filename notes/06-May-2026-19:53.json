@@ -1,0 +1,6 @@
+{
+    "date": "06-May-2026",
+    "study_duration": "25 minute",
+    "start_time": "19:53",
+    "notes": "What I've done for this session was to clean up the code by removing Position and other things that are no longer important. I was touching on getTime() from the Date class so I can track the seconds as they pass for reload and repair. I should watch a YouTube video."
+}
