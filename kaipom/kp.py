@@ -47,7 +47,6 @@ def main():
 
         print("")
         print(f"Pomodoro: {args.minutes} minutes") 
-        # print(f"Total Session: {args.hour} hour(s)")
     
         if args.minutes != 25:
             print(f"Break duration: 10 Minutes")

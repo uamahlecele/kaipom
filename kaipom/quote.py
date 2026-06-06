@@ -12,12 +12,11 @@ class Quotes:
     def random_quote(self):
 
         url = "https://zenquotes.io/api/random"
-        
         try:
-
+            
             response = requests.get(url)
         except Exception as err:
-            return f"{err}"
+            return f""
 
         data = response.json()
 
