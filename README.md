@@ -13,8 +13,8 @@ I noticed sometimes when I didn't have Wifi or data I couldn't use the Youtube P
 
 ## Features
 
-- **Pomodoro timer** – Start a 25 or 50 minute focus session, optionally set a total study duration (1–6 hours) with automatic breaks.
-- **Study notes** – Add notes after each session. View all notes (latest first) or filter by date.
+- **Pomodoro timer** – Start a 25 or 50 minute focus session.
+- **Study notes** – Add notes after each session. View all notes.
 <!-- - **Quiz** – Generate a simple quiz from your own notes (local only, no external APIs). -->
 
 ## Commands
