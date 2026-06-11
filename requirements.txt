@@ -1,5 +1,3 @@
 rich
-pathlib
-json
-time
-datetime
+tqdm
+requests

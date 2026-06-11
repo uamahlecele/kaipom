@@ -10,11 +10,11 @@ from rich.console import Console
 from rich.progress import Progress
 from rich.progress import BarColumn,TimeRemainingColumn
 import argparse
-from kaipom.timer import Timer
-from kaipom.notes import Notes
+from timer import Timer
+from notes import Notes
 from pathlib import Path
 
-from kaipom.quote import Quotes
+from quote import Quotes
 
 q = Quotes()
 
@@ -96,7 +96,7 @@ def date_formatter():
 
     namhlanje = datetime.today()
     
-    return f"{namhlanje.strftime("%d-%B-%Y")}"
+    return f"{namhlanje.strftime('%d-%B-%Y')}"
         
 
 def parsing_ama_argument(args = None):

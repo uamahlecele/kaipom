@@ -17,6 +17,13 @@ I noticed sometimes when I didn't have Wifi or data I couldn't use the Youtube P
 - **Study notes** – Add notes after each session. View all notes.
 <!-- - **Quiz** – Generate a simple quiz from your own notes (local only, no external APIs). -->
 
+## Intallation 
+```bash
+#install requirement libraries
+python3 -m pip install -r requirements.txt
+```
+
+
 ## Commands
 
 ```bash
