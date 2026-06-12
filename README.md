@@ -17,11 +17,31 @@ I noticed sometimes when I didn't have Wifi or data I couldn't use the Youtube P
 - **Study notes** – Add notes after each session. View all notes.
 <!-- - **Quiz** – Generate a simple quiz from your own notes (local only, no external APIs). -->
 
-## Intallation 
+## Installation 
+
+It is highly recommended to install the project dependencies inside a Python virtual environment (`venv`) to keep your system clean and isolated.
+
+**1. Create a virtual environment**
 ```bash
-#install requirement libraries
+python3 -m venv venv
+```
+
+**2. Activate the virtual environment**
+- On **macOS and Linux**:
+  ```bash
+  source venv/bin/activate
+  ```
+- On **Windows** (Command Prompt / PowerShell):
+  ```bash
+  venv\Scripts\activate
+  ```
+
+**3. Install requirement libraries**
+```bash
 python3 -m pip install -r requirements.txt
 ```
+
+*(Note: Once activated, your terminal prompt will usually show `(venv)` to indicate that you are working inside the virtual environment. To exit the virtual environment when you are done, simply type `deactivate`.)*
 
 
 ## Commands
